@@ -1,8 +1,9 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
-namespace SpotifyCloneServers.Controllers
+using WebApi.Models.Spotify;
+namespace SpotifyCloneAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
@@ -21,8 +22,12 @@ namespace SpotifyCloneServers.Controllers
 
         [AllowAnonymous]
         [HttpPost("callback")]
-        public IActionResult Authenticate() {
-            return Ok();
+        public async Task<IActionResult> Authenticate([FromQuery] RequestAuthorizationResponse response) {
+            var tokenResponse = await _spotifyLoginService.Authenticate(response);
+            if (tokenResponse == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, new { error = "state_mismatch"});
+
+            return Ok(tokenResponse);
         }
     }
 }

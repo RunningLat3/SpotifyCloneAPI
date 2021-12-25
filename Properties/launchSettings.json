@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "SpotifyCloneServer": {
+    "SpotifyCloneAPI": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

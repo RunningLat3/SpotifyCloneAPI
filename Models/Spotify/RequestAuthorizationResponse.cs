@@ -9,7 +9,7 @@ namespace WebApi.Models.Spotify {
         [JsonPropertyName("error")]
         public string? Error { get; set; }
         [JsonPropertyName("state")]
-        public string State { get; set; }
+        public string? State { get; set; }
 
     }
 }

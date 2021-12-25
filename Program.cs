@@ -1,6 +1,7 @@
 global using WebApi.Helpers;
 global using WebApi.Services;
 global using System.Text.Json.Serialization;
+global using SpotifyAPI.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,12 +13,19 @@ builder.Services.AddControllers()
 
 // configure strong typed settings object
 builder.Services.Configure<SpotifySettings>(builder.Configuration.GetSection("Spotify"));
-builder.Services.Configure<ApplicationClientSettings>(builder.Configuration.GetSection("ApplicationClient"));
+builder.Services.Configure<ApplicationWebSettings>(builder.Configuration.GetSection("ApplicationWeb"));
+builder.Services.Configure<ApplicationAPISettings>(builder.Configuration.GetSection("ApplicationAPI"));
 
-
+// configure routing option
+builder.Services.AddRouting(options =>
+{
+    options.LowercaseUrls = true;
+});
 
 // configure DI fo application services
+builder.Services.AddSingleton(SpotifyClientConfig.CreateDefault());
 builder.Services.AddScoped<ISpotifyLoginService, SpotifyLoginService>();
+builder.Services.AddScoped<ISpotifyService, SpotifyService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
