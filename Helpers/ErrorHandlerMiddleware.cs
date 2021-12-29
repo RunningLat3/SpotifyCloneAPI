@@ -4,22 +4,17 @@ using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using SpotifyAPI.Web;
 
 namespace WebApi.Helpers
 {
-    public class ErrorHandlerMiddleware
+    public class ErrorHandlerMiddleware : IMiddleware
     {
-        private readonly RequestDelegate _next;
-        public ErrorHandlerMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
-
-        public async Task Invoke(HttpContext context)
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             try
             {
-                await _next(context);
+                await next(context);
             }
             catch (Exception error)
             {
@@ -28,7 +23,6 @@ namespace WebApi.Helpers
 
                 switch (error)
                 {
-
                     case AppException e:
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;

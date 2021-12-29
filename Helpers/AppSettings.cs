@@ -15,8 +15,6 @@ namespace WebApi.Helpers
         public string ClientID { get; set; }
         public string ClientSecret { get; set; }
         public string Scopes { get; set; }
-        public string JWTSecret { get; set; }
-        public int RefreshTokenTTL { get; set; }
         public string RedirectURI { get; set; }
     }
 
