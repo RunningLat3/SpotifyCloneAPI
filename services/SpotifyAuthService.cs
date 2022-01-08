@@ -82,7 +82,7 @@ namespace WebApi.Services
         }
 
 
-        public async Task<CurrentUserResponse> GetTokenCurrentUserProfile(TokenRequest request)
+        public async Task<CurrentUserProfileResponse> GetTokenCurrentUserProfile(TokenRequest request)
         {
             var tokenResponse = new TokenResponse();
             switch (request.TokenRequestType)

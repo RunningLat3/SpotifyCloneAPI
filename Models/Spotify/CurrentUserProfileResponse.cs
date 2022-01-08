@@ -3,11 +3,14 @@ using SpotifyAPI.Web;
 
 namespace WebApi.Models.Spotify
 {
-    public class CurrentUserResponse
+    public class CurrentUserProfileResponse
     {
         public string Country { get; set; }
+        [JsonPropertyName("display_name")]
         public string DisplayName { get; set; }
+        public string Birthdate { get; set; }
         public string Email { get; set; }
+        [JsonPropertyName("external_urls")]
         public Dictionary<string, string> ExternalUrls { get; set; }
         public Followers Followers { get; set; }
         public string Href { get; set; }

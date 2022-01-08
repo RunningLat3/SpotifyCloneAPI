@@ -7,6 +7,6 @@ namespace WebApi.Services {
         string GetLoginUrl();
         Task<TokenResponse> GetToken(AuthorizationCodeRequest request);
         Task<TokenResponse> GetRefreshToken(RefreshTokenRequest request);
-        Task<CurrentUserResponse> GetTokenCurrentUserProfile(TokenRequest request);
+        Task<CurrentUserProfileResponse> GetTokenCurrentUserProfile(TokenRequest request);
     }
 }

@@ -30,16 +30,16 @@ namespace WebApi.Services
             return userProfile;
         }
 
-        public async Task<CurrentUserResponse> GetCurrentUserProfile(string access_token)
+        public async Task<CurrentUserProfileResponse> GetCurrentUserProfile(string access_token)
         {
             if (String.IsNullOrEmpty(access_token))
                 throw new AppException("Missing access token");
 
             var userProfile = await GetSpotifyClient(access_token).UserProfile.Current();
             if (userProfile is null) 
-                return new CurrentUserResponse();
+                return new CurrentUserProfileResponse();
                 
-            return new CurrentUserResponse() {
+            return new CurrentUserProfileResponse() {
                 Country = userProfile.Country,
                 DisplayName = userProfile.DisplayName,
                 Email = userProfile.Email,

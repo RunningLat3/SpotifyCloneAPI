@@ -2,7 +2,6 @@ using WebApi.Helpers;
 using WebApi.Services;
 using System.Text.Json.Serialization;
 using SpotifyAPI.Web;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
